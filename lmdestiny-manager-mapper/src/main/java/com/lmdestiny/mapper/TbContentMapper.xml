@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lmdestiny.dao.TbContentMapper" >
+<sql id="sql">
+	id,category_id categoryId,title,sub_title subTitle,
+	title_desc titleDesc,url,pic,pic2,content,created, updated
+</sql>
+<select id="list" parameterType="Long" resultType="com.lmdestiny.model.TbContent">
+	select <include refid="sql"/> from tb_content where category_id =#{categoryId}
+</select>
+<insert id="save" parameterType="com.lmdestiny.model.TbContent">
+	insert into tb_content values(
+	#{id},#{categoryId},#{title},#{subTitle},
+	#{titleDesc},#{url},#{pic},#{pic2},#{content},#{created},#{updated}
+	);
+</insert>
+<delete id="delete" parameterType="String">
+	delete from tb_content where id in(#{ids})
+</delete>
+<update id="update" parameterType="com.lmdestiny.model.TbContent">
+ 	update tb_content set 
+ 	category_id = #{categoryId},
+ 	title = #{title},
+ 	sub_title = #{subTitle},
+	title_desc = #{titleDesc},
+	url = #{url},
+	pic = #{pic},
+	pic2= #{pic2},
+	content = #{content},
+	updated = #{updated}
+	where id = #{id}
+</update>
+<select id="findByCategoryId" parameterType="Long" resultType="com.lmdestiny.model.TbContent">
+	select <include refid="sql"/> from tb_content where category_id =#{categoryId}
+</select>
+</mapper>

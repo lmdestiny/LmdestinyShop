@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lmdestiny.dao.TbItemParamMapper" >
+
+<sql id="sql1">
+	id,item_cat_id,param_data,created,updated
+</sql>
+  <select id="getEntityById" parameterType="Long" resultType="com.lmdestiny.model.TbItemParam">
+  	select * from tb_item_param where item_cat_id =#{cid}
+  </select>
+  
+  <insert id="save" parameterType="com.lmdestiny.model.TbItemParam">
+  	insert into tb_item_param(<include refid="sql1"/>)
+  	values(#{id},#{itemCatId},#{paramData},#{created},#{updated}) 
+  </insert>
+  <select id="findAllTbItem" resultType="com.lmdestiny.model.vo.TbItemParamWithName">
+  	SELECT
+	pa.id,
+	item_cat_id itemCatId,
+	cat.name,
+	param_data paramData,
+	pa.created,
+	pa.updated
+	from tb_item_param pa
+	LEFT JOIN tb_item_cat cat ON item_cat_id = cat.id
+  </select>
+  <delete id="delete" parameterType="String">
+  	delete from tb_item_param where id in(#{ids}) 
+  </delete>
+</mapper>

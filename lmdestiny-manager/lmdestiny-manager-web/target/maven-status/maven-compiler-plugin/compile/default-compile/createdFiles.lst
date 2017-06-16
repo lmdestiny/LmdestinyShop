@@ -1,0 +1,5 @@
+com\lmdestiny\controller\ContentCategoryController.class
+com\lmdestiny\controller\ContentController.class
+com\lmdestiny\controller\ItemController.class
+com\lmdestiny\controller\ItemParamController.class
+com\lmdestiny\controller\SupporteController.class

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lmdestiny.dao.TbContentCategoryMapper" >
+  
+  <sql id="sql">
+  	id,parent_id parentId,name,status,sort_order sortOrder,
+  	is_parent isParent,created,updated
+  </sql>
+  <select id="list" parameterType="Long" resultType="com.lmdestiny.model.TbContentCategory">
+	select <include refid="sql"/> from tb_content_category where parent_id = #{parentId}
+  </select>
+  <select id="getCategoryById" parameterType="Long" resultType="com.lmdestiny.model.TbContentCategory">
+  	select <include refid="sql"/> from tb_content_category where id = #{parentid}
+  </select>
+  <update id="update" parameterType="com.lmdestiny.model.TbContentCategory">
+  	update tb_content_category set is_parent = #{isParent} where id = #{id}
+  </update>
+  <insert id="save" parameterType="com.lmdestiny.model.TbContentCategory" keyProperty="id" useGeneratedKeys="true">
+  	insert into tb_content_category(parent_id,name,status,sort_order,is_parent,created,updated)
+  	 values(
+  	  	#{parentId},#{name},#{status},#{sortOrder},#{isParent},#{created},#{updated}
+  	);
+  </insert>
+    <update id="updateStatus" parameterType="com.lmdestiny.model.TbContentCategory">
+  	update tb_content_category set status = 0 where id = #{id}
+  </update>
+      <update id="updateName" parameterType="com.lmdestiny.model.TbContentCategory">
+  	update tb_content_category set name=#{name} where id = #{id}
+  </update>
+</mapper>

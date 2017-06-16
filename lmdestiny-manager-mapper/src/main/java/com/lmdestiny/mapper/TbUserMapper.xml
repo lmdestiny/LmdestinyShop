@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lmdestiny.dao.TbUserMapper" >
+  
+  <select id="findUserName" resultType="com.lmdestiny.model.TbUser" parameterType="String">
+  	select * from tb_user where username = #{_parameter}
+  </select>
+    <select id="findphone" resultType="com.lmdestiny.model.TbUser" parameterType="String">
+  	select * from tb_user where phone = #{_parameter}
+  </select>
+    <select id="findEmail" resultType="com.lmdestiny.model.TbUser" parameterType="String">
+  	select * from tb_user where email = #{_parameter}
+  </select>
+  <insert id="save" parameterType="com.lmdestiny.model.TbUser">
+  	insert into tb_user(username,password,phone,email,created,updated)
+  	values(#{username},#{password},#{phone},#{email},#{created},#{updated})
+  </insert>
+  <select id="getUserByUserName" resultType="com.lmdestiny.model.TbUser" parameterType="String">
+  	select * from tb_user where username= #{_parameter}
+  </select>
+</mapper>

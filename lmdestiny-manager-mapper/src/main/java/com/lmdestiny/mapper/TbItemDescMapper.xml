@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lmdestiny.dao.TbItemDescMapper" >
+<sql id="sql1">
+	item_id,item_desc,created,updated
+</sql>
+ <insert id="save" parameterType="com.lmdestiny.model.TbItemDesc">
+ 	insert into tb_item_desc(<include refid="sql1"/>) 
+ 		values(#{itemId},#{itemDesc},#{created},#{updated})
+ </insert>
+ <select id="getItemDesc" resultType="com.lmdestiny.model.TbItemDesc" parameterType="Long">
+ 	select item_id itemId,item_desc itemDesc,created,updated from tb_item_desc 
+ 	where item_id =#{itemId}
+ </select>
+</mapper>
